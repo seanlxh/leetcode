@@ -1,0 +1,26 @@
+public class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        char[] a = s.toCharArray();
+        int result = 0; //结果
+        int now_start = 0;
+        int now_end = 0;
+        int now_account = 0;
+        if(s == null)
+        	return 0;
+        if(a.length == 1)
+        	return 1;
+        for(int i = 1; i < a.length; i++){
+        	for(int j = now_start; j <= now_end; j++){
+        		if(a[j]==a[i]){
+        			now_start = j+1;
+        		}
+        	}
+        	now_end = i;
+			now_account = now_end - now_start+1;
+			if(now_account > result)
+				result = now_account;
+        }
+		return result;
+    }
+}
+不过这个方法一开始TLE，经过推测时间复杂度是O(n^2)
